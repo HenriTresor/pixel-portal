@@ -1,0 +1,18 @@
+
+.gameCard{
+    object-fit: cover;
+    width: 70dvw;
+    overflow: hidden;
+    background: none;
+    color: #fff;
+    border: 1px solid white;
+    /* padding: 1em; */
+    height: 500px;
+    font-size: 0.8em;
+    /* text-align: center; */
+    margin: 0 auto;
+    position: relative;
+    margin-top: 2em;
+    /* z-index: -1; */
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: Roboto;
+  /* font-size: 1.2rem; */
+}
+
+body{
+  background: #000;
+}
+
+.first-image{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+  object-fit: fit;
+}
+
+.short-image{
+  border:1px solid white;
+  /* box-shadow: 0px 0px 30px black; */
+  border-radius: 10px;
+}
