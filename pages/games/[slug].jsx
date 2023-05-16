@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Carousel from 'react-material-ui-carousel'
 import useFetch from '@/hooks/useFetch'
 import { ArrowOutward } from '@mui/icons-material'
+import Meta from '../../components/Meta'
 
 const SingleGame = () => {
 
@@ -36,6 +37,8 @@ const SingleGame = () => {
     }, [gameData])
     return (
         <>
+
+            <Meta title={game ? game?.name : 'loading ...'} />
             {
                 (gameLoading && !game) ? 'loading' : (
                     <Grid
@@ -53,24 +56,29 @@ const SingleGame = () => {
                                 }}
                             >
 
-                                {/* <Image
-                                    // className='first-image'
-                                    style={{
+                                {
+                                    trailers?.length <= 0 && (
+                                        <Image
+                                            // className='first-image'
+                                            style={{
 
-                                    }}
-                                    width={480}
-                                    height={400}
-                                    alt={game?.description_raw}
-                                    src={game?.background_image}
-                                /> */}
+                                            }}
+                                            width={480}
+                                            height={400}
+                                            alt={game?.description_raw}
+                                            src={game?.background_image}
+                                        />
+                                    )
+                                }
+                               
                                 <Typography>
-                                    Available Trailer
+                                    Available Trailers
                                 </Typography>
                                 <Carousel
                                 autoPlay={false}
                                 >
                                     {
-                                        trailers && trailers.map(trailer => (
+                                        trailers?.length > 0 ? trailers.map(trailer => (
                                             <>
                                                 <Typography>{ trailer.name}</Typography>
                                                 <video
@@ -82,7 +90,7 @@ const SingleGame = () => {
                                                     <source src={trailer.data.max} type="video/mp4" />
                                                 </video>
                                             </>
-                                        ))
+                                        )) : <Typography>No trailers available</Typography>
                                     }
                                 </Carousel>
                             </Box>

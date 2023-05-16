@@ -28,8 +28,8 @@ const index = ({
                     backdropFilter: 'blur(4px)',
                     background: 'rgb(0,0,0,.5)',
                     position: 'absolute', top: 0,
-                    display: 'grid',
-                    placeContent:'center', textAlign:'center'
+                    display: 'flex',
+                    justifyContent:'center',alignItems:'center', flexDirection:'column', textAlign:'center'
                 }}
             >
                 <Typography
@@ -40,25 +40,15 @@ const index = ({
                 >
                     {name && name}
                 </Typography>
-                <Carousel
-                    sx={{ height: '100%' }}
-                    animation='slide'
-                    duration={500}
-                    IndicatorIcon=''
-                >
-                    {
-                        short_screenshots?.map(screen => (
-                            <Image
-                                className='short-image'
-                                key={screen.id}
-                                src={screen.image}
-                                alt={screen.image + screen.id}
-                                width={200}
-                                height={200}
-                            />
-                        ))
-                    }
-                </Carousel>
+               
+                <Image
+                    // className='short-image'
+                    key={background_image}
+                    src={background_image}
+                    alt={background_image}
+                    width={200}
+                    height={200}
+                />
             </Box>
         </Box>
     )

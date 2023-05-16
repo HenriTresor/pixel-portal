@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material'
 import axios from 'axios'
 import Carousel from 'react-material-ui-carousel'
 import Link from 'next/link'
+import Meta from '../components/Meta'
 
 export const getServerSideProps = async () => {
   const res = await axios.get('https://api.rawg.io/api/games?key=23c8f2c1b117464d9f9a312a25c76156&page=1&page_size=10')
@@ -21,6 +22,7 @@ const Index = ({ games }) => {
   console.log(games);
   return (
     <>
+      <Meta title={'Pixel Portal - Home' } />
       <Box
         sx={{ marginTop: '2em' }}
       >

@@ -3,17 +3,20 @@ import HeaderStyles from './header.module.css'
 import { 
   Button, Typography, Box, List
 } from '@mui/material'
+import Link from 'next/link'
 
 const Header = () => {
   return (
     <Box className={HeaderStyles.header}>
         <Box>
-          <Typography 
-          variant='h5'
-          component='h1'
+        <Link href="/" passHref>
+          <Typography
+            variant='h5'
+            component='h1'
           >
             Pixel Portal
-        </Typography>
+          </Typography>
+        </Link>
       </Box>
         <Box
         
