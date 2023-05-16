@@ -7,6 +7,7 @@ import Carousel from 'react-material-ui-carousel'
 import useFetch from '@/hooks/useFetch'
 import { ArrowOutward } from '@mui/icons-material'
 import Meta from '../../components/Meta'
+import Loading from '../../components/Loading.jsx'
 
 const SingleGame = () => {
 
@@ -40,7 +41,7 @@ const SingleGame = () => {
 
             <Meta title={game ? game?.name : 'loading ...'} />
             {
-                (gameLoading && !game) ? 'loading' : (
+                (gameLoading && !game) ? <Loading height={'100dvh'} /> : (
                     <Grid
                         container
                         spacing={10}
@@ -52,7 +53,7 @@ const SingleGame = () => {
                             <Box
                                 sx={{
                                     position: 'relative',
-                                    height: '100%', 
+                                    height: '100%',
                                 }}
                             >
 
@@ -70,17 +71,17 @@ const SingleGame = () => {
                                         />
                                     )
                                 }
-                               
+
                                 <Typography>
                                     Available Trailers
                                 </Typography>
                                 <Carousel
-                                autoPlay={false}
+                                    autoPlay={false}
                                 >
                                     {
                                         trailers?.length > 0 ? trailers.map(trailer => (
                                             <>
-                                                <Typography>{ trailer.name}</Typography>
+                                                <Typography>{trailer.name}</Typography>
                                                 <video
                                                     height={'100%'}
                                                     width={'100%'}
