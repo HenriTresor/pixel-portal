@@ -4,7 +4,7 @@ import gameCardStyles from './gameCard.module.css'
 import Image from 'next/image'
 import Carousel from 'react-material-ui-carousel'
 
-const index = ({
+const Index = ({
     name, background_image, rating, short_screenshots
 }) => {
     return (
@@ -54,4 +54,4 @@ const index = ({
     )
 }
 
-export default index
+export default Index

@@ -1,4 +1,3 @@
-import Header from '../components/Header/Index'
 import GameCard from '../components/GameCard/Index'
 import { useEffect } from 'react'
 import { Box, Typography, Grid, Card, Button } from '@mui/material'
