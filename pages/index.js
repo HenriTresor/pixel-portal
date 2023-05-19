@@ -1,28 +1,41 @@
-import GameCard from '../components/GameCard/Index'
+import GameCard from '../components/GameCard'
 import { useEffect } from 'react'
 import { Box, Typography, Grid, Card, Button } from '@mui/material'
 import axios from 'axios'
 import Carousel from 'react-material-ui-carousel'
 import Link from 'next/link'
 import Meta from '../components/Meta'
-import SimpleCard from '../components/Card/Index'
+import SimpleCard from '../components/Card'
 import { AddBoxOutlined } from '@mui/icons-material'
+import Error from '../components/Error'
 
 export const getStaticProps = async () => {
-  const res = await axios.get('https://api.rawg.io/api/games?key=23c8f2c1b117464d9f9a312a25c76156&page_size=18')
+  try {
+    const res = await axios.get('https://api.rawg.io/api/games?key=23c8f2c1b117464d9f9a312a25c76156&page_size=18')
 
-  const data = await res.data
-  return {
-    props: {
-      TopGames: data.results.slice(0, 10),
-      otherGames: data.results.slice(11, -1)
+    const data = await res.data
+    return {
+      props: {
+        TopGames: data.results.slice(0, 10),
+        otherGames: data.results.slice(11, -1)
+      }
+    }
+  } catch (err) {
+    return {
+      props: {
+        error: err.message
+      }
     }
   }
 }
 
 
-const Index = ({ TopGames, otherGames }) => {
+const Index = ({ TopGames, otherGames, error }) => {
   // console.log(TopGames);
+
+  if (error) {
+    return <Error message={error.includes('ETIMEDOUT') ? 'Check your connection and refresh the page.' : error} />
+  }
   return (
     <>
       <Meta title={'Pixel Portal - Home'} />
