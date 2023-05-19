@@ -7,7 +7,7 @@
 }
 
 body{
-  background: #000;
+  background: #000000ef;
 }
 
 .first-image{
@@ -26,6 +26,9 @@ body{
   border-radius: 10px;
 }
 
+a{
+  text-decoration: none;
+}
 .card{
  width: auto;
  width: 25%;

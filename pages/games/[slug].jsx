@@ -66,7 +66,7 @@ const SingleGame = () => {
                                             }}
                                             width={480}
                                             height={400}
-                                            alt={game?.description_raw}
+                                            alt={game?.name}
                                             src={game?.background_image}
                                         />
                                     )
