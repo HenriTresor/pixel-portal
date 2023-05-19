@@ -3,7 +3,7 @@ import { Card, Typography, Rating, Box, Button } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-const index = ({
+const Index = ({
     name, background_image,
     rating, short_screenshots, publishers, slug
 }) => {
