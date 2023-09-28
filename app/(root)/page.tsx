@@ -1,5 +1,6 @@
+import Header from '@/components/views/Header'
 import Image from 'next/image'
 
 export default function Home() {
-  return <h1>Hello pixel</h1>
+  return <Header />
 }
