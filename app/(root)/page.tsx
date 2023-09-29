@@ -1,7 +1,20 @@
+import { Button } from '@/components/ui/button'
 import Header from '@/components/views/Header'
 import Image from 'next/image'
 
-export default function Home() {
+
+export const getGenres = async () => {
+  try {
+    const res = await fetch(`https://api.rawg.io/api/genres?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}`)
+    const data = await res.json()
+
+    return data
+  } catch (error: any) {
+    console.log('error', error.message)
+  }
+}
+export default async function Home() {
+  const genres = await getGenres()
   return (
     <>
       <div className='text-white w-full flex justify-between h-[90dvh] p-2'>
@@ -27,6 +40,13 @@ export default function Home() {
             alt='svg'
             className='w-[100%] object-cover h-full'
           />
+        </div>
+      </div>
+
+      <div className='text-white w-full flex justify-between h-auto p-2'>
+        <div className='p-3 flex items-center justify-between w-full '>
+          <h1 className='font-bold capitalize text-white text-[1.5rem]'>Available genres</h1>
+          <Button>see more</Button>
         </div>
       </div>
     </>
