@@ -1,20 +1,29 @@
+'use client'
+import GenreCard from '@/components/ui/Cards/Genre'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/views/Header'
+import { Genre } from '@/types/app'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 
-export const getGenres = async () => {
-  try {
-    const res = await fetch(`https://api.rawg.io/api/genres?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}`)
-    const data = await res.json()
+export default function Home() {
+  const [genres, setGenres] = useState<Genre[]>([])
 
-    return data
-  } catch (error: any) {
-    console.log('error', error.message)
-  }
-}
-export default async function Home() {
-  const genres = await getGenres()
+  useEffect(() => {
+
+    const getGenres = async () => {
+      try {
+        const res = await fetch(`https://api.rawg.io/api/genres?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}&page_size=6`)
+        const data = await res.json()
+        console.log('done fetching')
+        setGenres(data?.results)
+      } catch (error: any) {
+        console.log('error', error.message)
+      }
+    }
+    getGenres()
+  }, [])
   return (
     <>
       <div className='text-white w-full flex justify-between h-[90dvh] p-2'>
@@ -43,10 +52,17 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className='text-white w-full flex justify-between h-auto p-2'>
+      <div className='text-white w-full flex justify-between h-auto p-2 flex-col'>
         <div className='p-3 flex items-center justify-between w-full '>
           <h1 className='font-bold capitalize text-white text-[1.5rem]'>Available genres</h1>
           <Button>see more</Button>
+        </div>
+        <div className='flex w-full items-start justify-between p-3 text-white  flex-wrap'>
+          {
+            genres?.length && genres?.map((genre, index) => {
+              return <GenreCard {...genre} key={genre.id} />
+            })
+          }
         </div>
       </div>
     </>
