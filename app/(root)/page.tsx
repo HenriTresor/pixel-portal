@@ -1,15 +1,16 @@
 'use client'
+import GameCard from '@/components/ui/Cards/Game'
 import GenreCard from '@/components/ui/Cards/Genre'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/views/Header'
-import { Genre } from '@/types/app'
+import { Game, Genre } from '@/types/app'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 
 export default function Home() {
   const [genres, setGenres] = useState<Genre[]>([])
-  const [games, setGames] = useState<[]>([])
+  const [games, setGames] = useState<Game[]>([])
 
   useEffect(() => {
 
@@ -22,16 +23,19 @@ export default function Home() {
         console.log('error', error.message)
       }
     }
+    getGenres()
+  }, [])
+  useEffect(() => {
     const getGames = async () => {
       try {
         const res = await fetch(`https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}&page_size=6`)
         const data = await res.json()
-        setGenres(data?.results)
+        setGames(data?.results)
       } catch (error: any) {
         console.log('error', error.message)
       }
     }
-    getGenres()
+    getGames()
   }, [])
   return (
     <>
@@ -66,7 +70,7 @@ export default function Home() {
           <h1 className='font-bold capitalize text-white text-[1.5rem]'>Available genres</h1>
           <Button>see more</Button>
         </div>
-        <div className='flex w-full items-start justify-between p-3 text-white  flex-wrap'>
+        <div className='grid sm:grid-cols-6 grid-cols-2 gap-4'>
           {
             genres?.length && genres?.map((genre, index) => {
               return <GenreCard {...genre} key={genre.id} />
@@ -79,10 +83,10 @@ export default function Home() {
           <h1 className='font-bold capitalize text-white text-[1.5rem]'>Popular games</h1>
           <Button>see more</Button>
         </div>
-        <div className='flex w-full items-start justify-between p-3 text-white  flex-wrap'>
+        <div className='grid sm:grid-cols-6 grid-cols-2 gap-4'>
           {
-            genres?.length && genres?.map((genre, index) => {
-              return <GenreCard {...genre} key={genre.id} />
+            genres?.length && games?.map((game, index) => {
+              return <GameCard {...game} key={game.id} />
             })
           }
         </div>
