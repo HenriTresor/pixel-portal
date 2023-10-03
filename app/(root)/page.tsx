@@ -3,6 +3,7 @@ import GameCard from '@/components/ui/Cards/Game'
 import GenreCard from '@/components/ui/Cards/Genre'
 import { Button } from '@/components/ui/button'
 import Header from '@/components/views/Header'
+import SideBar from '@/components/views/SideBar'
 import { Game, Genre } from '@/types/app'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -39,6 +40,7 @@ export default function Home() {
   }, [])
   return (
     <>
+      <SideBar />
       <div className='text-white w-full flex justify-between h-[90dvh] p-2'>
         <div className='w-full h-full'>
           <Image
