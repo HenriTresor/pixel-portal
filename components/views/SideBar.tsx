@@ -7,7 +7,7 @@ type Props = {}
 
 function SideBar({ }: Props) {
     return (
-        <div className='w-full h-full fixed top-0 left-0 flex justify-end'>
+        <div className='w-full h-full fixed top-0 left-0 flex justify-end overflow-hidden'>
             <div className='bg-orange-800  w-full h-full p-2'>
                 <div className='w-full flex justify-between items-center'>
                     <h1 className='text-[1.7rem] font-bold'>pixel <span className='text-orange-600'>portal</span></h1>

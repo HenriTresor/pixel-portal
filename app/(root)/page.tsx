@@ -40,7 +40,6 @@ export default function Home() {
   }, [])
   return (
     <>
-      <SideBar />
       <div className='text-white w-full flex justify-between h-[90dvh] p-2'>
         <div className='w-full h-full'>
           <Image
